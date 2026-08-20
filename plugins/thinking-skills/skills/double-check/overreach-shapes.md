@@ -67,11 +67,11 @@ ask counts.
 
 ## An absence claim about other people's thinking
 
-**Carried by:** *"No lawful basis for the copy has been considered"*.
-**Lens:** coverage, applied to an absence — no file holds what a room has or has not considered.
-**What was true:** `DECISIONS.md` carries no decision about the copy, on a search whose control passed. What
-anyone has considered in a meeting or in their own head is outside every artefact available.
-**Rewritten to:** *"No decision on record covers the copy."*
+**Carried by:** *"Nobody has thought about what the retention rule does to the reporting copy"*.
+**Lens:** coverage, applied to an absence — no file holds what a room has or has not thought about.
+**What was true:** `docs/decisions.md` records no decision about the reporting copy, on a search whose control
+passed. What anyone has considered in a meeting or in their own head is outside every artefact available.
+**Rewritten to:** *"No decision on record covers the reporting copy."*
 **Why it is here:** an absence claim inherits the reach of the thing searched. A file search can retire *"it
 is not written down"* and can never retire *"nobody thought about it"*.
 
