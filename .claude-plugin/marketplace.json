@@ -1,0 +1,23 @@
+{
+  "name": "albertnel",
+  "owner": {
+    "name": "Albert Nel",
+    "url": "https://github.com/AlbertNel01"
+  },
+  "description": "Albert Nel's agent skills for Claude Code.",
+  "plugins": [
+    {
+      "name": "thinking-skills",
+      "source": "./plugins/thinking-skills",
+      "description": "Four skills that check work already in progress: converge a recommendation, double-check an artefact's claims, journey-check a build against its original intent, and report what's next.",
+      "category": "workflows",
+      "keywords": [
+        "reasoning",
+        "verification",
+        "planning",
+        "review",
+        "decision-making"
+      ]
+    }
+  ]
+}

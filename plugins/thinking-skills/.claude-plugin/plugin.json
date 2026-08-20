@@ -1,0 +1,18 @@
+{
+  "name": "thinking-skills",
+  "description": "Four skills that check work already in progress: converge a recommendation, double-check an artefact's claims, journey-check a build against its original intent, and report what's next.",
+  "author": {
+    "name": "Albert Nel",
+    "url": "https://github.com/AlbertNel01"
+  },
+  "homepage": "https://github.com/AlbertNel01/skills",
+  "repository": "https://github.com/AlbertNel01/skills",
+  "license": "MIT",
+  "keywords": [
+    "reasoning",
+    "verification",
+    "planning",
+    "review",
+    "decision-making"
+  ]
+}

@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+
+# Never commit a personal overreach log. Real entries carry schema, counts and
+# recipients from real work; they live at ~/.claude/double-check/overreach-log.md.
+# See docs/adr/0001-personal-defect-log-lives-outside-the-plugin.md
+overreach-log.md
