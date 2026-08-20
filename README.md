@@ -17,14 +17,18 @@ claude plugin marketplace add AlbertNel01/skills
 claude plugin install thinking-skills@albertnel
 ```
 
-To pick up changes later:
+To pick up changes later, refresh the catalogue and then the plugin — `marketplace update` alone only
+re-reads the catalogue, it does not move an installed plugin:
 
 ```
 /plugin marketplace update albertnel
+/plugin update thinking-skills@albertnel
 ```
 
-The plugin declares no `version`, so every push to `main` is picked up by a marketplace update — there
-is no version to bump and no release step. See
+Restart the session to apply.
+
+The plugin declares no `version`, so its version resolves to the commit sha and every push to `main` is
+picked up by that update — there is no version to bump and no release step. See
 [ADR 0002](./docs/adr/0002-no-version-field-in-plugin-json.md).
 
 ## Plugins
