@@ -58,6 +58,21 @@ The single holder of a move — the user or the agent — assigned to whoever ta
 move without one cannot be acted on.
 _Avoid_: owner, assignee
 
+**Named red**:
+The exact edit to the implementation that turns a specified test red. The unit `plan-preflight` demands per
+test; a test without one asserts nothing, however green it runs.
+_Avoid_: failing case, negative test
+
+**Defect class**:
+A shape of plan defect that recurs across codebases, stated so it can be checked against any task. Ships in
+the skill.
+_Avoid_: bug type, anti-pattern
+
+**Project trap**:
+The project-specific shape a defect class takes in one codebase — the config that swaps a class out, the env
+var a command actually reads. Lives in that project, never in the skill.
+_Avoid_: gotcha, quirk, footgun
+
 ### Artefacts
 
 **Overreach shapes**:
@@ -69,3 +84,8 @@ _Avoid_: examples, patterns
 The personal, undistributed record of real overreach caught in real work. Lives outside this repo, on the
 machine that caught it.
 _Avoid_: log, findings
+
+**Worked example**:
+The single run that produced `plan-preflight` — eleven defects, how each was caught, and the project traps
+they exposed. Evidence for the classes, not a second copy of them. Ships inside the plugin.
+_Avoid_: case study, examples

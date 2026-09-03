@@ -35,7 +35,7 @@ picked up by that update — there is no version to bump and no release step. Se
 
 ### `thinking-skills`
 
-Four skills that check work already in progress, rather than producing new work. Each is invoked by name
+Five skills that check work rather than produce it. Each is invoked by name
 (`thinking-skills:converge`) or picked up automatically when its description matches what you're doing.
 
 | Skill | Use it when |
@@ -43,15 +43,22 @@ Four skills that check work already in progress, rather than producing new work.
 | `converge` | A decision is in play and the recommendation needs hardening — verify its facts, sweep a fresh angle set each pass, hold or reverse with the reason named. |
 | `double-check` | An artefact is about to leave your machine — an email, a PR body, a ticket comment, a figure quoted to a person — and its claims need anchoring to the evidence behind them. |
 | `journey-check` | A feature, fix or epic is mid-build and you want to know whether it still leads where it was started to lead. |
+| `plan-preflight` | An implementation plan is about to be executed — its tests are code nobody has run and its claims about the codebase are recollections nobody has looked up. |
 | `whats-next` | You're picking work back up, or want the single next move named with its baton holder and done-signal. |
 
 They divide by what they test. `converge` tests whether the **answer** is right. `double-check` tests
 whether the **wording** outruns its evidence. `journey-check` tests whether the **direction** is still
-the one that was chosen. `whats-next` tests nothing — it reports standing and picks the next move.
+the one that was chosen. `plan-preflight` tests whether a **plan** can fail — whether each test it
+specifies has an edit that turns it red, and each claim it makes survives a lookup. `whats-next` tests
+nothing — it reports standing and picks the next move.
 
 `double-check` writes its accumulated real-world findings to `~/.claude/double-check/overreach-log.md`,
 outside this repo and outside the plugin. That is deliberate — see
 [ADR 0001](./docs/adr/0001-personal-defect-log-lives-outside-the-plugin.md).
+
+`plan-preflight` keeps the general defect classes here and expects each project's own traps to live in that
+project, at `docs/agents/plan-preflight.md` or wherever the repo already points agents. A trap from one
+codebase loads uselessly in every other, and a dispatched subagent can read the repo but not your memory.
 
 ## Layout
 
