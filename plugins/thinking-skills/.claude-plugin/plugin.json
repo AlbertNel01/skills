@@ -1,6 +1,6 @@
 {
   "name": "thinking-skills",
-  "description": "Five skills that check work rather than produce it: preflight a plan before it is executed, converge a recommendation, double-check an artefact's claims, journey-check a build against its original intent, and report what's next.",
+  "description": "Six skills that check work rather than produce it: preflight a plan before it is executed, converge a recommendation, double-check an artefact's claims, journey-check a build against its original intent, hand an artefact to a critic cast as its real reader, and report what's next.",
   "author": {
     "name": "Albert Nel",
     "url": "https://github.com/AlbertNel01"
@@ -14,6 +14,7 @@
     "planning",
     "testing",
     "review",
+    "critique",
     "decision-making"
   ]
 }

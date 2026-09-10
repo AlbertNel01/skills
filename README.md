@@ -35,12 +35,13 @@ picked up by that update — there is no version to bump and no release step. Se
 
 ### `thinking-skills`
 
-Five skills that check work rather than produce it. Each is invoked by name
+Six skills that check work rather than produce it. Each is invoked by name
 (`thinking-skills:converge`) or picked up automatically when its description matches what you're doing.
 
 | Skill | Use it when |
 | --- | --- |
 | `converge` | A decision is in play and the recommendation needs hardening — verify its facts, sweep a fresh angle set each pass, hold or reverse with the reason named. |
+| `critic-prompt` | An artefact is finished and you want it torn apart by the person who actually receives it — produces one paste-ready prompt that casts a fresh agent as that named reader. |
 | `double-check` | An artefact is about to leave your machine — an email, a PR body, a ticket comment, a figure quoted to a person — and its claims need anchoring to the evidence behind them. |
 | `journey-check` | A feature, fix or epic is mid-build and you want to know whether it still leads where it was started to lead. |
 | `plan-preflight` | An implementation plan is about to be executed — its tests are code nobody has run and its claims about the codebase are recollections nobody has looked up. |
@@ -49,8 +50,14 @@ Five skills that check work rather than produce it. Each is invoked by name
 They divide by what they test. `converge` tests whether the **answer** is right. `double-check` tests
 whether the **wording** outruns its evidence. `journey-check` tests whether the **direction** is still
 the one that was chosen. `plan-preflight` tests whether a **plan** can fail — whether each test it
-specifies has an edit that turns it red, and each claim it makes survives a lookup. `whats-next` tests
-nothing — it reports standing and picks the next move.
+specifies has an edit that turns it red, and each claim it makes survives a lookup. `critic-prompt` tests
+nothing itself — it builds the prompt that makes a **reader** test the artefact, which is what catches the
+defects only a stake can see. `whats-next` tests nothing either — it reports standing and picks the next
+move.
+
+`double-check` and `critic-prompt` both aim at a finished artefact and are not substitutes. `double-check`
+reads it against its own sources and asks whether each claim is carried. `critic-prompt` hands it to
+somebody with a stake and asks whether they could act on it.
 
 `double-check` writes its accumulated real-world findings to `~/.claude/double-check/overreach-log.md`,
 outside this repo and outside the plugin. That is deliberate — see

@@ -73,6 +73,23 @@ The project-specific shape a defect class takes in one codebase — the config t
 var a command actually reads. Lives in that project, never in the skill.
 _Avoid_: gotcha, quirk, footgun
 
+**Cast**:
+The named reader a critic is instructed to be — name, role, what they own, what they are not, how they read,
+and what they already know because they said it themselves. What makes a critic report defects that cost
+something rather than style notes.
+_Avoid_: persona, character, role-play
+
+**Named suspect**:
+A term, claim or count the critic is told to be hard on, written as the bare name with no check attached.
+Attaching the expected finding demotes the read to a confirmation of it.
+_Avoid_: hint, focus area, hot spot
+
+**Reader-visible layer**:
+The part of an artefact its recipient actually receives, pasted into the critic prompt verbatim. Distinct
+from the working layer — scratch notes above a divider, commented reasoning — which never reaches them and
+must never reach the critic either.
+_Avoid_: the draft, the body, the content
+
 ### Artefacts
 
 **Overreach shapes**:
