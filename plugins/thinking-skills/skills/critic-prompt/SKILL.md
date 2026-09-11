@@ -93,6 +93,7 @@ Read only what is between the markers. It is the whole of what you received.
 [READER-VISIBLE ARTEFACT, VERBATIM, LINE BREAKS INTACT]
 ---
 
+Do not spawn sub-agents or delegate any part of this — read and verify every source yourself.
 Open these before you answer, and check the artefact's claims against them rather than
 taking its paraphrase on trust:
 - [PATH THE CRITIC CAN OPEN] — [what it is and what it is authority for]
