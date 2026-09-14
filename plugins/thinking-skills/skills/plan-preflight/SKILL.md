@@ -23,7 +23,7 @@ For code that already exists, run a code review instead.
 
 1. **Name the red.** For every test the plan specifies, write down the exact edit to the implementation that turns it red.
 2. **Open the file.** For every claim about the codebase — a class, a column, a config value, a command, a component's props — read the source. Recall is not a lookup.
-3. **Trace what no red can reach.** Every string a reader will see and every comment explaining *why* — diff it against the spec, ADR or source it restates. Nothing asserts these, so step 1 never sees them.
+3. **Trace what no red can reach.** Every string a reader will see and every comment explaining *why* — diff it against the spec, ADR or source it restates. Nothing asserts these, so step 1 never sees them. Then run it the other way: for every precondition the change alters, find the strings that were true *because* of the old one.
 4. **Walk the classes** against each task.
 
 **Done when** every test has a named edit that turns it red, every claim carries a `file:line`, and every string a reader sees traces to its authority. A test with no such edit is a fixture with an opinion.
@@ -42,6 +42,7 @@ For code that already exists, run a code review instead.
 | **Guard omitted where code certifies** | For every write of a timestamp or flag asserting a human acted, find the guard proving they did. | An action stamped "consulted at" unconditionally while its caller never checked the consultation had happened. |
 | **Step acts on real data** | Read each manual step for writes outside the test database. | A step told an implementer to mark a real record achieved, in a database holding live user data. |
 | **Authority overridden by restatement** | Where the plan words a user-facing string itself, diff it against the spec's. A paraphrase becomes the authority without announcing it. | A shorter button label reverted a wording the spec had deliberately adopted from a later source — and the test asserted only the shared prefix, so it could not tell which shipped. |
+| **Statement falsified by the change** | Name the precondition the change alters, then grep the strings that were true *because* of the old one — operator output, a value assembled before the branch that now exits differently, a docblock explaining an absence. | Shipping a missing table turned *"the protection list is absent, so this run certifies nothing"* into *"protection applied and fresh"*, on a run where nothing had been reviewed. |
 | **Prose ships as fact** | Read every comment and docblock the plan supplies as a claim, and check it like one. Nothing tests a comment. | A docblock explained a deep link by a picker mechanism the page never uses; it would have shipped verbatim into the codebase. |
 | **Anchor is ambiguous** | For each "insert after X", confirm X occurs once, and that *after* means the same to you and the implementer — next sibling, or last child. | "After the button" could mean inside its container or following it; the two put the block in different conditional branches. |
 
@@ -52,6 +53,7 @@ For code that already exists, run a code review instead.
 - "I wrote this plan, I know what's in it" — every defect in the run that produced this skill was in a plan its author had just self-reviewed clean.
 - Reaching for a count of expected failures instead of their signature.
 - "It's only a comment" — a comment is a claim that ships, and no red edit will ever catch it.
+- "That was already there, my change didn't touch it" — a fix retires the reasons other sentences were written. Three defects in one session were existing strings a change had just made false, each caught in review rather than here.
 - "That's a copy call" — check whether the authority already settled the wording before offering anyone a choice.
 
 ## The project's own traps
