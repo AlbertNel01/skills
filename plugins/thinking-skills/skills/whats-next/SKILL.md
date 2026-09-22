@@ -29,7 +29,9 @@ Where the work actually stands now — not what the conversation remembers. Chec
 
 ### 3. Order what's left onto the critical path
 The **critical path** is the chain of remaining moves that gates done; everything else is parallel work. Order the remaining moves by what blocks what, and mark work that sits off the path as parallel or optional.
-**Done when:** every remaining move names what it needs before it can start, and off-path moves are marked as such.
+
+Then size the remainder in one coarse unit — hours, days or weeks — off the moves you just counted, not off a feeling, and name the basis in the same breath (`~2 days — 4 moves, one waits on review turnaround`). A remaining effort is always **claimed**: it is a forecast, and no command output can verify it. Where a move's size is unknown because it is blocked on someone else's answer, say so rather than averaging it in — `~1 day + unknown, the migration is unsized until DevOps answers`.
+**Done when:** every remaining move names what it needs before it can start, off-path moves are marked as such, and the remainder carries one coarse size with the basis it was counted from.
 
 ### 4. Pick the single next move
 Exactly one — the first unblocked move on the critical path. **One action, one done-signal:** a move that needs "and" or a step range is two moves, so take the first and push the rest to *Then*. The same rule binds every *Then* move. Give it a baton holder, a done-signal an observer could check in one line, the link back to what the last completed move produced, and the link forward — why this move rather than another, and why now. Where the move is a decision only the user can make, the baton is theirs and the move is the decision, not the work behind it. A decision between options carries them as a **ranked** list under the move, highest-priority first, one line of reasoning each — a triage whose order is invisible has thrown away its own answer. *Why now* stays one line, about the decision rather than the options.
@@ -45,6 +47,7 @@ This shape, in this order, and nothing after it but the offer. Plain markdown: e
 
 **Standing** — <where the work is now, at most 20 words>
 **Goal** — <the outcome this serves>
+**Effort left** — <coarse size of what remains> — <the basis it was counted from>
 **Just done** — <last completed move> (<evidence>) — unblocked <what>
 
 **NEXT · <you|me>** — <one action>
@@ -57,6 +60,7 @@ This shape, in this order, and nothing after it but the offer. Plain markdown: e
 1. <move> · <baton> · needs <what gates it>
 2. …
 3. …
++<N> more after these — <one phrase naming the tail>
 
 **Waiting on you**
 - <decision> — <what stalls until it lands>
@@ -65,5 +69,5 @@ This shape, in this order, and nothing after it but the offer. Plain markdown: e
 - <one line each — findings that belong to no move above>
 ```
 
-Cap **Then** at three moves — the horizon that makes the next move make sense, not the plan. Cap **Loose ends** at three one-liners and drop the block entirely when there are none; it is the only home for stray findings, so a fourth one gets cut rather than appended elsewhere. Loose ends are inert facts; a finding with a live consequence someone must act on is a move or a *Waiting on you*, because the bottom block is the least-read one in the report. Drop *Waiting on you* the same way when nothing is held by the user, and *Changed since last time* on a first run. A decision the user must make lives in *Waiting on you* alone — *Then* holds moves, including the user's own actions, so a decision listed in both is one item read twice. When a re-run reverses or widens the last report's standing, that one line says so plainly — a correction belongs at the top, not folded into the standing as though it always read that way. Close with an offer to start the first move whose baton is mine, whether that is the next move or one further down.
-**Done when:** every block of the shape is present or deliberately dropped, both caps hold, unverified claims are marked in place, the baton holder is named on the next move and on each *Then* move, `Goal` stands on its own line, and nothing follows the shape except the offer.
+Cap **Then** at three moves — the horizon that makes the next move make sense, not the plan. When more remain, the `+<N> more` line carries the count and one phrase for what the tail is, so a long tail is visible without being listed; drop that line when three moves are all there is. A truncated tail with no count reads as a finished plan, which is the one thing the cap must not do. Cap **Loose ends** at three one-liners and drop the block entirely when there are none; it is the only home for stray findings, so a fourth one gets cut rather than appended elsewhere. Loose ends are inert facts; a finding with a live consequence someone must act on is a move or a *Waiting on you*, because the bottom block is the least-read one in the report. Drop *Waiting on you* the same way when nothing is held by the user, and *Changed since last time* on a first run. A decision the user must make lives in *Waiting on you* alone — *Then* holds moves, including the user's own actions, so a decision listed in both is one item read twice. When a re-run reverses or widens the last report's standing, that one line says so plainly — a correction belongs at the top, not folded into the standing as though it always read that way. Close with an offer to start the first move whose baton is mine, whether that is the next move or one further down.
+**Done when:** every block of the shape is present or deliberately dropped, both caps hold, a tail longer than three carries its `+<N> more` line, `Effort left` stands on its own line as a claimed figure, unverified claims are marked in place, the baton holder is named on the next move and on each *Then* move, `Goal` stands on its own line, and nothing follows the shape except the offer.
