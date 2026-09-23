@@ -70,9 +70,10 @@ names apart from the rest.
 _Avoid_: impact, scope, footprint
 
 **Pre-mortem**:
-The plan assumed shipped and failed, with each cause written as the failure it produces, its rank, the plan task
-that mitigates it (or none), and the mitigation proposed — two fields, never merged. Includes the deploy window, when old and new code run side by side; `plan-preflight` step 7 holds
-the open list of what they share.
+The plan assumed shipped and failed, with each cause written as the failure it produces, its rank, the
+plan task that mitigates it (or none), and the mitigation proposed — two fields, never merged. Includes the
+deploy window, when old and new code run side by side. `plan-preflight` step 7 holds the rank definitions
+and the open list of what old and new code share.
 _Avoid_: risk assessment, what-ifs
 
 **Defect class**:
