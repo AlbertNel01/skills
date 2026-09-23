@@ -36,11 +36,11 @@ For code that already exists, run a code review instead.
 Decided by what the check found, not by whether it ran. Take the first that applies:
 
 1. A blocker risk the plan does not mitigate: **do not start**.
-2. Any finding: **needs revision**. A finding is a test with no named red, a claim the source contradicts, a string that disagrees with its authority, a defect-class hit, a blast-radius file the plan never names, a task input without a producer, a task that leaves the system broken, or a high risk the plan does not mitigate.
+2. Any finding: **needs revision**. A finding is a test with no named red, a claim the source contradicts, a string that disagrees with its authority, a defect-class hit, a blast-radius file the plan never names, a task input without a producer, a task that leaves the system broken, a high risk the plan does not mitigate, or a blocker or high risk whose mitigating task has no test with a named red.
 3. Any check left unfinished: **incomplete**. This is a statement about the check, not the plan; it is never **ready**.
 4. Otherwise: **ready**. Medium risks and mitigated risks are reported, and they do not block.
 
-Under every verdict, list each check left unfinished. A risk is mitigated only when a named task in the plan does the mitigation. For a blocker or high risk, that task must also carry a test with a named red; a mitigating task without one is a finding. A mitigation this check proposes is not the plan's.
+Under every verdict, list each check left unfinished. A risk is mitigated when a named task in the plan does the mitigation, so rule 1 does not fire for it. If the mitigating task of a blocker or high risk has no test with a named red, rule 2 fires instead. A mitigation this check proposes is not the plan's.
 
 ## Defect classes
 

@@ -71,8 +71,8 @@ _Avoid_: impact, scope, footprint
 
 **Pre-mortem**:
 The plan assumed shipped and failed, with each cause written as the failure it produces, the plan task
-that mitigates it (or none), and the mitigation proposed — two fields, never merged. Includes the deploy window, when old and new code share everything between them — database, queues,
-caches, files, and the API an old client calls on a new server.
+that mitigates it (or none), and the mitigation proposed — two fields, never merged. Includes the deploy window, when old and new code run side by side; `plan-preflight` step 7 holds
+the open list of what they share.
 _Avoid_: risk assessment, what-ifs
 
 **Defect class**:
