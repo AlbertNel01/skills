@@ -63,6 +63,19 @@ The exact edit to the implementation that turns a specified test red. The unit `
 test; a test without one asserts nothing, however green it runs.
 _Avoid_: failing case, negative test
 
+**Blast radius**:
+Every file a change reaches — created, edited, or broken because something it calls changed — found the
+way the code reaches it, not the way the plan names it. `plan-preflight` lists the files the plan never
+names apart from the rest.
+_Avoid_: impact, scope, footprint
+
+**Pre-mortem**:
+The plan assumed shipped and failed, with each cause written as the failure it produces, its rank, the
+plan task that mitigates it (or none), and the mitigation proposed — two fields, never merged. Includes the
+deploy window, when old and new code run side by side. `plan-preflight` step 7 holds the rank definitions
+and the open list of what old and new code share.
+_Avoid_: risk assessment, what-ifs
+
 **Defect class**:
 A shape of plan defect that recurs across codebases, stated so it can be checked against any task. Ships in
 the skill.

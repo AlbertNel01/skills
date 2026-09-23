@@ -7,7 +7,7 @@ description: Use when an implementation plan is about to be executed — dispatc
 
 ## Overview
 
-A plan's test code is code nobody has run. Its claims about the codebase are recollections nobody has looked up. Preflight turns both into checked facts while defects are still free.
+A plan's test code is code nobody has run. Its claims about the codebase are recollections nobody has looked up. Its silences — the files it never names, the deploy it never pictures — are defects no lookup reaches. Preflight turns all three into checked facts while defects are still free.
 
 **A test that cannot go red proves nothing.** It stays green when the implementation is wrong, and the plan that produced it reads fine the whole time.
 
@@ -24,9 +24,23 @@ For code that already exists, run a code review instead.
 1. **Name the red.** For every test the plan specifies, write down the exact edit to the implementation that turns it red.
 2. **Open the file.** For every claim about the codebase — a class, a column, a config value, a command, a component's props — read the source. Recall is not a lookup.
 3. **Trace what no red can reach.** Every string a reader will see and every comment explaining *why* — diff it against the spec, ADR or source it restates. Nothing asserts these, so step 1 never sees them. Then run it the other way: for every precondition the change alters, find the strings that were true *because* of the old one.
-4. **Walk the classes** against each task.
+4. **Walk the classes** against each task. Mark every class × task pair hit or clear.
+5. **Map the blast radius.** List every file the change reaches: the ones it creates, the ones it edits, and the ones that break because something they call changed. Find callers the way the code reaches them — an import under an alias, a name in a dispatch table, a queue payload, an HTTP route, a consumer in another language. For every changed symbol, record the caller search you ran; a search that finds callers is its own control, and an empty one needs a positive control. Then sweep what plans forget: tests, migrations, config, seeders, fixtures, API specs, docs.
+6. **Walk the order.** For each task, name the producer of every input it reads — a column, a response field, a function, a fixture — as an earlier task or an existing `file:line`. Then confirm the system runs at the end of the task.
+7. **Pre-mortem.** The plan shipped and failed; write why. Hunt where plans fail: partially migrated data, failure paths nothing catches, tenant isolation, volume, concurrency, rollback. Then walk the deploy window, when old and new code run side by side: for each thing they share — database, queue, cache, files, search indexes, topics other services consume, sessions, the API between an old client and a new server — name what the old side writes that the new side reads, and the reverse. Every hunt area and every shared thing gets a line: a risk, or "checked, none" with the reason. Rank each risk by consequence — **blocker**: any harm rollback does not undo — data loss or corruption, messages sent, money moved, calls already made to a third party, an outage that outlasts the rollback — or a security or tenant breach; **high**: user-visible breakage rollback does undo; **medium**: everything else — with the failure it produces, the plan task that mitigates it (or none), and the mitigation you propose. A risk you cannot tie to a concrete failure is taste; drop it.
 
-**Done when** every test has a named edit that turns it red, every claim carries a `file:line`, and every string a reader sees traces to its authority. A test with no such edit is a fixture with an opinion.
+**Done when** every item has a result: every test has a named red or is recorded as a finding, every claim carries the `file:line` that confirms or contradicts it, every string a reader sees and every comment explaining why is traced to its authority, every precondition the change alters has its string sweep, every file in the blast radius carries its reason — the ones the plan never names listed apart — every task input names its producer or is recorded as a finding, every task is marked running or broken at its end, every class × task pair is marked, every changed symbol has its caller search, every hunt area and shared thing has its line, every risk names its failure, its rank, the plan task that mitigates it or none, and the mitigation you propose, and every blocker or high risk the plan mitigates names the check that fails without the mitigation — a test and its named red, or the deploy step and its observable signal — or is recorded as a finding. A step with no recorded result is unfinished, however empty its list. A finding is a result; a gap in the plan never makes a step unfinished. A test with no named red is a fixture with an opinion. An empty search proves absence only when the same search, in the same place, finds something you know is there. An empty search with no such control is no result, so its item — a caller search, a "checked, none" line — is unfinished.
+
+## Verdict
+
+Decided by what the preflight found and what it left unfinished, never by effort. Take the first that applies, then add any unfinished step to it (below):
+
+1. A blocker risk the plan does not mitigate: **do not start**.
+2. Any finding: **needs revision**. A finding is a test with no named red, a claim the source contradicts, a string that disagrees with its authority, a defect-class hit, a blast-radius file the plan never names, a task input without a producer, a task that leaves the system broken, a high risk the plan does not mitigate, or a blocker or high risk whose mitigation has no check that fails when the mitigation is missing.
+3. Any step left unfinished: **incomplete**. This is a statement about the preflight, not the plan; it is never **ready**.
+4. Otherwise: **ready**. Medium risks and mitigated risks are reported, and they do not block.
+
+When rule 1 or 2 fires with a step unfinished, the verdict line names it — `needs revision + incomplete: step 7` — because an unfinished pre-mortem means rule 1 was never tested. A risk is mitigated when a named task in the plan does the mitigation, so rule 1 does not fire for it. A blocker's or high risk's mitigation needs a check that fails when the mitigation is missing: for a code change, a test with that named red; for an operational step — ship the migration a release early, drain the queue, keep the old field one release — a named deploy step with an observable signal, such as "`rollout status` complete before the producer ships". Without one, rule 2 fires; a test of other behaviour on the same task does not count. A mitigation this preflight proposes is not the plan's.
 
 ## Defect classes
 
@@ -55,6 +69,7 @@ For code that already exists, run a code review instead.
 - "It's only a comment" — a comment is a claim that ships, and no red edit will ever catch it.
 - "That was already there, my change didn't touch it" — a fix retires the reasons other sentences were written. Three defects in one session were existing strings a change had just made false, each caught in review rather than here.
 - "That's a copy call" — check whether the authority already settled the wording before offering anyone a choice.
+- "The column has a default, so the deploy is safe" — the schema is one of several things old and new code share mid-deploy; the queue, the cache and the API contract are others.
 
 ## The project's own traps
 

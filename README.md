@@ -50,7 +50,8 @@ Six skills that check work rather than produce it. Each is invoked by name
 They divide by what they test. `converge` tests whether the **answer** is right. `double-check` tests
 whether the **wording** outruns its evidence. `journey-check` tests whether the **direction** is still
 the one that was chosen. `plan-preflight` tests whether a **plan** can fail — whether each test it
-specifies has an edit that turns it red, and each claim it makes survives a lookup. `critic-prompt` tests
+specifies has an edit that turns it red, each claim it makes survives a lookup, and what it never names —
+the files in its blast radius, the deploy window in its pre-mortem — is found anyway. `critic-prompt` tests
 nothing itself — it builds the prompt that makes a **reader** test the artefact, which is what catches the
 defects only a stake can see. `whats-next` tests nothing either — it reports standing and picks the next
 move.
