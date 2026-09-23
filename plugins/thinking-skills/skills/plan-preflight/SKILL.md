@@ -27,13 +27,20 @@ For code that already exists, run a code review instead.
 4. **Walk the classes** against each task.
 5. **Map the blast radius.** List every file the change reaches: the ones it creates, the ones it edits, and the ones that break because something they call changed. Find callers the way the code reaches them — an import under an alias, a name in a dispatch table, a queue payload, an HTTP route, a consumer in another language. Then sweep what plans forget: tests, migrations, config, seeders, fixtures, API specs, docs.
 6. **Walk the order.** For each task, name the producer of every input it reads — a column, a response field, a function, a fixture — as an earlier task or an existing `file:line`. Then confirm the system runs at the end of the task.
-7. **Pre-mortem.** The plan shipped and failed; write why. Hunt where plans fail: partially migrated data, failure paths nothing catches, tenant isolation, volume, concurrency, rollback. Then walk the deploy window, when old and new code run side by side: for each store they share — database, queue, cache — name what old code writes that new code reads, and what new code writes that old code reads. Rank each risk blocker / high / medium, with the failure it produces and its mitigation. A risk you cannot tie to a concrete failure is taste; drop it.
+7. **Pre-mortem.** The plan shipped and failed; write why. Hunt where plans fail: partially migrated data, failure paths nothing catches, tenant isolation, volume, concurrency, rollback. Then walk the deploy window, when old and new code run side by side: for each store they share — database, queue, cache — name what old code writes that new code reads, and what new code writes that old code reads. Rank each risk blocker / high / medium, with the failure it produces, the plan task that mitigates it (or none), and the mitigation you propose. A risk you cannot tie to a concrete failure is taste; drop it.
 
 **Done when** every test has a named edit that turns it red, every claim carries a `file:line`, every string a reader sees traces to its authority, every file in the blast radius carries its reason — the ones the plan never names listed apart — every task input names its producer, every task ends with the system running, and every risk names its failure. A test with no such edit is a fixture with an opinion. An empty search proves absence only when the same search, in the same place, finds something you know is there.
 
 ## Verdict
 
-Decided by what the check found, not by whether it ran. Any blocker risk the plan does not mitigate: **do not start**. Any finding, or any check left incomplete: **needs revision**. A finding is a test with no named red, a claim the source contradicts, a string that disagrees with its authority, a defect-class hit, a blast-radius file the plan never names, a task input without a producer, a task that leaves the system broken, or a high risk the plan does not mitigate. **Ready** when every check is complete and produced no finding above. Medium risks and risks the plan already mitigates are reported, and they do not block.
+Decided by what the check found, not by whether it ran. Take the first that applies:
+
+1. A blocker risk the plan does not mitigate: **do not start**.
+2. Any finding: **needs revision**. A finding is a test with no named red, a claim the source contradicts, a string that disagrees with its authority, a defect-class hit, a blast-radius file the plan never names, a task input without a producer, a task that leaves the system broken, or a high risk the plan does not mitigate.
+3. Any check left unfinished: **incomplete**. This is a statement about the check, not the plan; it is never **ready**.
+4. Otherwise: **ready**. Medium risks and mitigated risks are reported, and they do not block.
+
+Under every verdict, list each check left unfinished. A risk is mitigated only when a named task in the plan does the mitigation, and any test the plan gives for it has a named red. A mitigation this check proposes is not the plan's.
 
 ## Defect classes
 
