@@ -33,7 +33,7 @@ For code that already exists, run a code review instead.
 
 ## Verdict
 
-Decided by what the check found, not by whether it ran. Any blocker risk: **do not start**. Any finding, or any check left incomplete: **needs revision**. A finding is a test with no named red, a claim the source contradicts, a string that disagrees with its authority, a defect-class hit, a blast-radius file the plan never names, a task input without a producer, a task that leaves the system broken, or a high risk the plan does not mitigate. **Ready** only when every check is complete and found nothing.
+Decided by what the check found, not by whether it ran. Any blocker risk the plan does not mitigate: **do not start**. Any finding, or any check left incomplete: **needs revision**. A finding is a test with no named red, a claim the source contradicts, a string that disagrees with its authority, a defect-class hit, a blast-radius file the plan never names, a task input without a producer, a task that leaves the system broken, or a high risk the plan does not mitigate. **Ready** when every check is complete and produced no finding above. Medium risks and risks the plan already mitigates are reported, and they do not block.
 
 ## Defect classes
 
