@@ -7,7 +7,7 @@ description: Use when an implementation plan is about to be executed — dispatc
 
 ## Overview
 
-A plan's test code is code nobody has run. Its claims about the codebase are recollections nobody has looked up. Preflight turns both into checked facts while defects are still free.
+A plan's test code is code nobody has run. Its claims about the codebase are recollections nobody has looked up. Its silences — the files it never names, the deploy it never pictures — are defects no lookup reaches. Preflight turns all three into checked facts while defects are still free.
 
 **A test that cannot go red proves nothing.** It stays green when the implementation is wrong, and the plan that produced it reads fine the whole time.
 
@@ -25,8 +25,15 @@ For code that already exists, run a code review instead.
 2. **Open the file.** For every claim about the codebase — a class, a column, a config value, a command, a component's props — read the source. Recall is not a lookup.
 3. **Trace what no red can reach.** Every string a reader will see and every comment explaining *why* — diff it against the spec, ADR or source it restates. Nothing asserts these, so step 1 never sees them. Then run it the other way: for every precondition the change alters, find the strings that were true *because* of the old one.
 4. **Walk the classes** against each task.
+5. **Map the blast radius.** List every file the change reaches: the ones it creates, the ones it edits, and the ones that break because something they call changed. Find callers the way the code reaches them — an import under an alias, a name in a dispatch table, a queue payload, an HTTP route, a consumer in another language. Then sweep what plans forget: tests, migrations, config, seeders, fixtures, API specs, docs.
+6. **Walk the order.** For each task, name the producer of every input it reads — a column, a response field, a function, a fixture — as an earlier task or an existing `file:line`. Then confirm the system runs at the end of the task.
+7. **Pre-mortem.** The plan shipped and failed; write why. Hunt where plans fail: partially migrated data, failure paths nothing catches, tenant isolation, volume, concurrency, rollback. Then walk the deploy window, when old and new code run side by side: for each store they share — database, queue, cache — name what old code writes that new code reads, and what new code writes that old code reads. Rank each risk blocker / high / medium, with the failure it produces and its mitigation. A risk you cannot tie to a concrete failure is taste; drop it.
 
-**Done when** every test has a named edit that turns it red, every claim carries a `file:line`, and every string a reader sees traces to its authority. A test with no such edit is a fixture with an opinion.
+**Done when** every test has a named edit that turns it red, every claim carries a `file:line`, every string a reader sees traces to its authority, every file in the blast radius carries its reason — the ones the plan never names listed apart — every task input names its producer, and every risk names its failure. A test with no such edit is a fixture with an opinion. An empty search proves absence only when the same search, in the same place, finds something you know is there.
+
+## Verdict
+
+Mechanical. Any blocker risk: **do not start**. Any test without a named red, claim without a `file:line`, blast-radius file the plan never names, or task input without a producer: **needs revision**. Otherwise: **ready**.
 
 ## Defect classes
 
@@ -55,6 +62,7 @@ For code that already exists, run a code review instead.
 - "It's only a comment" — a comment is a claim that ships, and no red edit will ever catch it.
 - "That was already there, my change didn't touch it" — a fix retires the reasons other sentences were written. Three defects in one session were existing strings a change had just made false, each caught in review rather than here.
 - "That's a copy call" — check whether the authority already settled the wording before offering anyone a choice.
+- "The column has a default, so the deploy is safe" — the schema is one of three things old and new code share mid-deploy; the queue and the cache are the other two.
 
 ## The project's own traps
 
