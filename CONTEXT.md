@@ -70,8 +70,8 @@ names apart from the rest.
 _Avoid_: impact, scope, footprint
 
 **Pre-mortem**:
-The plan assumed shipped and failed, with each cause written as the failure it produces and its
-mitigation. Includes the deploy window, when old and new code share everything between them — database, queues,
+The plan assumed shipped and failed, with each cause written as the failure it produces, the plan task
+that mitigates it (or none), and the mitigation proposed — two fields, never merged. Includes the deploy window, when old and new code share everything between them — database, queues,
 caches, files, and the API an old client calls on a new server.
 _Avoid_: risk assessment, what-ifs
 
