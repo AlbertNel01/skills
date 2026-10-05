@@ -29,6 +29,7 @@ Then verify each in the environment. Open the file, read the schema, run the que
 
 Enumerate the angles for *this* pass before evaluating any of them, so the sweep is not steered by the answer you already like. Pull from the families below; a family that surfaces nothing is still a checked box.
 
+- **Remove the need** — does this need to exist at all? Name what would make the whole recommendation unnecessary: a read-only measurement that turns the unknown it designs around into a known, a one-time manual act, a decision to delete the thing it protects. Sweep this family first. When one holds, it is the recommendation to beat, and the other families test it rather than the design it would replace.
 - **Lifecycle** — create, edit, copy, duplicate, delete, restore, undo, replay. Which of these has nobody thought about?
 - **Concurrency and retries** — double-submit, redelivery, two writers, partial failure.
 - **Ownership of the invariant** — which system is the authority for this rule, and is the enforcement being placed on the authority or on a mirror of it?
