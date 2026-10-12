@@ -35,7 +35,7 @@ picked up by that update — there is no version to bump and no release step. Se
 
 ### `thinking-skills`
 
-Six skills that check work rather than produce it. Each is invoked by name
+Seven skills that check work rather than produce it. Each is invoked by name
 (`thinking-skills:converge`) or picked up automatically when its description matches what you're doing.
 
 | Skill | Use it when |
@@ -45,6 +45,7 @@ Six skills that check work rather than produce it. Each is invoked by name
 | `double-check` | An artefact is about to leave your machine — an email, a PR body, a ticket comment, a figure quoted to a person — and its claims need anchoring to the evidence behind them. |
 | `journey-check` | A feature, fix or epic is mid-build and you want to know whether it still leads where it was started to lead. |
 | `plan-preflight` | An implementation plan is about to be executed — its tests are code nobody has run and its claims about the codebase are recollections nobody has looked up. |
+| `status-check` | You want a one-screen snapshot of where the work stands right now — what is running, what needs you, what blocks each PR. Invoked by name only. |
 | `whats-next` | You're picking work back up, or want the single next move named with its baton holder and done-signal. |
 
 They divide by what they test. `converge` tests whether the **answer** is right. `double-check` tests
@@ -54,7 +55,8 @@ specifies has an edit that turns it red, each claim it makes survives a lookup, 
 the files in its blast radius, the deploy window in its pre-mortem — is found anyway. `critic-prompt` tests
 nothing itself — it builds the prompt that makes a **reader** test the artefact, which is what catches the
 defects only a stake can see. `whats-next` tests nothing either — it reports standing and picks the next
-move.
+move. `status-check` reports standing without picking a move — what is running, what needs you, what
+blocks each PR.
 
 `double-check` and `critic-prompt` both aim at a finished artefact and are not substitutes. `double-check`
 reads it against its own sources and asks whether each claim is carried. `critic-prompt` hands it to
