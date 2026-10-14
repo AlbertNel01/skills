@@ -83,8 +83,8 @@ shape listed with its expected outcome and a check that can fail.
 _Avoid_: edge case, scenario
 
 **Semantic copy**:
-Other code that makes the same decision as a rule being changed, whatever it is called — a block in another
-file, another service, a second path in the same file. Not a caller, so a caller search misses it;
+Other code that makes the same decision as a rule being changed or added, whatever it is called — a block in
+another file, another service, a second path in the same file. Not a caller, so a caller search misses it;
 `plan-preflight` step 5 searches by tokens and then by meaning.
 _Avoid_: duplicate, sibling
 
