@@ -76,6 +76,18 @@ deploy window, when old and new code run side by side. `plan-preflight` step 7 h
 and the open list of what old and new code share.
 _Avoid_: risk assessment, what-ifs
 
+**Input shape**:
+One distinct form of an input a change reads but does not control — a sentinel `0`, a half-populated
+optional field, one item against many, a dependency failing on its own. `plan-preflight` step 7 wants every
+shape listed with its expected outcome and a check that can fail.
+_Avoid_: edge case, scenario
+
+**Semantic copy**:
+Other code that makes the same decision as a rule being changed, whatever it is called — a block in another
+file, another service, a second path in the same file. Not a caller, so a caller search misses it;
+`plan-preflight` step 5 searches by tokens and then by meaning.
+_Avoid_: duplicate, sibling
+
 **Defect class**:
 A shape of plan defect that recurs across codebases, stated so it can be checked against any task. Ships in
 the skill.
