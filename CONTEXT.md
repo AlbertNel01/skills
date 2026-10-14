@@ -50,13 +50,8 @@ _Avoid_: goal, objective, requirement
 
 **Leg**:
 One purpose pursued within a journey, dated and evidenced. The unit `journey-check` judges against the
-north star — except inside a fix chain, which is judged as one.
+north star.
 _Avoid_: step, task, phase
-
-**Fix chain**:
-A run of legs that each repair a defect an earlier leg added. Every leg advances the north star, so judged
-one at a time each looks on-path; `journey-check` gives the whole run one verdict, rabbit hole.
-_Avoid_: fix-on-fix, whack-a-mole
 
 **Baton**:
 The single holder of a move — the user or the agent — assigned to whoever takes the first action in it. A
@@ -82,14 +77,15 @@ and the open list of what old and new code share.
 _Avoid_: risk assessment, what-ifs
 
 **Input shape**:
-One distinct form of the input a change sorts but does not control — a plain revert, a revert of a revert, a
-hand-resolved cherry-pick. `plan-preflight` step 7 wants every shape in a table with its expected result and
-a check that can fail.
+One distinct form of an input a change reads but does not control — a sentinel `0`, a half-populated
+optional field, one item against many, a dependency failing on its own. `plan-preflight` step 7 wants every
+shape listed with its expected outcome and a check that can fail.
 _Avoid_: edge case, scenario
 
-**Rule copy**:
-A second place that computes the same rule — a block in another file, a second path in the same file. Not a
-caller, so a caller search misses it; `plan-preflight` step 5 searches for the rule's own tokens.
+**Semantic copy**:
+Other code that makes the same decision as a rule being changed, whatever it is called — a block in another
+file, another service, a second path in the same file. Not a caller, so a caller search misses it;
+`plan-preflight` step 5 searches by tokens and then by meaning.
 _Avoid_: duplicate, sibling
 
 **Defect class**:
