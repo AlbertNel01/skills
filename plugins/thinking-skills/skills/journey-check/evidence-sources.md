@@ -24,7 +24,7 @@ Fetch first: a stale base drags other people's merged commits onto the map as th
 
 ## The three places (step 2)
 
-- **Merged history** — GitHub MCP `search_issues` on the ticket key (`PROJ-1234 repo:<org>/<repo> is:pr`) or `list_pull_requests` filtered by head branch, then `get_pull_request`, `get_pull_request_files`, `get_pull_request_comments`. Once work is merged this is the only place the journey survives, and review feedback here is a common origin of legs nobody planned.
+- **Merged history** — GitHub MCP `search_issues` on the ticket key (`PROJ-1234 repo:<org>/<repo> is:pr`) or `list_pull_requests` filtered by head branch, then `get_pull_request`; for changed files and review comments use read-only `gh api --paginate --slurp repos/<org>/<repo>/pulls/<n>/files` (and `.../comments`, `.../reviews`) piped to `jq 'add[]'`, with `set -o pipefail;` in front so a failed `gh` is a non-zero exit rather than empty output, because the MCP list tools stop at 30 without saying so. Once work is merged this is the only place the journey survives, and review feedback here is a common origin of legs nobody planned.
 - **The branch** — `git -C <repo> log --oneline <merge-base>..HEAD`, then the same with `--name-only`; `git -C <repo> status --porcelain` for the working diff and untracked files. Work in flight is a leg, and the one no PR shows.
 - **The unwritten** — the current task list, the plan for work not yet started, and decisions taken in this or a prior session. On a barely-started journey these are the only legs there are.
 
