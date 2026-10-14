@@ -50,8 +50,13 @@ _Avoid_: goal, objective, requirement
 
 **Leg**:
 One purpose pursued within a journey, dated and evidenced. The unit `journey-check` judges against the
-north star.
+north star — except inside a fix chain, which is judged as one.
 _Avoid_: step, task, phase
+
+**Fix chain**:
+A run of legs that each repair a defect an earlier leg added. Every leg advances the north star, so judged
+one at a time each looks on-path; `journey-check` gives the whole run one verdict, rabbit hole.
+_Avoid_: fix-on-fix, whack-a-mole
 
 **Baton**:
 The single holder of a move — the user or the agent — assigned to whoever takes the first action in it. A
@@ -75,6 +80,17 @@ plan task that mitigates it (or none), and the mitigation proposed — two field
 deploy window, when old and new code run side by side. `plan-preflight` step 7 holds the rank definitions
 and the open list of what old and new code share.
 _Avoid_: risk assessment, what-ifs
+
+**Input shape**:
+One distinct form of the input a change sorts but does not control — a plain revert, a revert of a revert, a
+hand-resolved cherry-pick. `plan-preflight` step 7 wants every shape in a table with its expected result and
+a check that can fail.
+_Avoid_: edge case, scenario
+
+**Rule copy**:
+A second place that computes the same rule — a block in another file, a second path in the same file. Not a
+caller, so a caller search misses it; `plan-preflight` step 5 searches for the rule's own tokens.
+_Avoid_: duplicate, sibling
 
 **Defect class**:
 A shape of plan defect that recurs across codebases, stated so it can be checked against any task. Ships in

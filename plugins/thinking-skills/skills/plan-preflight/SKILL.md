@@ -1,6 +1,6 @@
 ---
 name: plan-preflight
-description: Use when an implementation plan is about to be executed — dispatched to implementers or worked task-by-task — when a skill, script or runbook is about to get its first commit with no written plan, before pushing a review fix that adds a rule, a variable, a state file or a copy of shared logic, or when a suite is green but you cannot name what would turn it red.
+description: Use when an implementation plan is about to be executed — dispatched to implementers or worked task-by-task — when a skill, script or runbook is about to get its first commit with no written plan, before pushing a fix for a review finding, or when a suite is green but you cannot name what would turn it red.
 ---
 
 # Plan Preflight
@@ -65,9 +65,9 @@ When rule 1 or 2 fires with a step unfinished, the verdict line names it — `ne
 
 Before you push a fix that a review found, write four lines:
 
-1. **Origin.** Which commit added the defect? If it was an earlier fix on this branch, say so. Two rounds in a row of blockers in code that earlier fixes added means the design, not the patch, is the problem: stop and run `journey-check` before the next push.
+1. **Origin.** Which commit added the defect? If it was an earlier fix on this branch, say so. Two rounds in a row of blockers in code that earlier fixes added means the design, not the patch, is the problem: stop and run `journey-check` before the next push. Count again from zero after a journey check that changes the design.
 2. **Copies.** Every other place the rule you changed lives (step 5).
-3. **Shape.** The check you added that fails without the fix (step 1).
+3. **Red.** The check you added that fails without the fix, and the edit that turns it red (step 1).
 4. **Simpler option.** If the fix adds a rule, a variable, a state file or a shortcut, name the deletion, refusal or one-line note that removes the need, and why you did not take it.
 
 ## Red flags

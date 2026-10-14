@@ -10,7 +10,7 @@ A planned leg is judged exactly as a walked one — the verdict just costs less 
 - **The incidental refactor** — a file touched for a real reason, then cleaned up well beyond that reason. Ask what breaks if it is reverted and the north-star change re-applied minimally.
 - **The unrelated bug** — a genuine defect found in passing and fixed here. Usually its own ticket rather than this journey's leg.
 - **Rebuilding what exists** — a helper, component or service written because the existing one was not found. "There was nothing to reuse" is a claim; grep for the thing before the leg counts as on-path.
-- **The fix chain** — legs that each repair a defect an earlier leg added, in the same kind of code. Every leg looks on-path, because each fix serves the north star. Judge the chain, not the leg: a chain of repairs is drifting, whatever its direction. A leg that rebuilds something an earlier journey check ruled out is drifting too. Name the design change that removes the need.
+- **The fix chain** — legs that each repair a defect an earlier leg added, in the same kind of code. Every leg looks on-path, because each fix serves the north star. Judge the chain, not the leg: the whole chain takes one verdict, rabbit hole, whatever its direction. A leg that rebuilds something an earlier journey check ruled out is drifting too. Name the design change that removes the need.
 - **The abandoned leg** — work started, superseded, and left sitting in the diff. Dead code holds no route to a north-star item.
 
 "It needed doing" is not a route back to the north star.
